@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import NaverMapComponent from './Components/NaverMaps';
+import { NavermapsProvider } from 'react-naver-maps';
 
 function App() {
+  const queryParams = new URLSearchParams(window.location.search);
+  const latitude = queryParams.get('latitude');
+
+  const longitude = queryParams.get('longitude');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NavermapsProvider
+      ncpClientId='83bfuniegk'
+    // or finClientId, govClientId  
+    >
+      <div style={{ width: 300, height: 300, backgroundColor: "#f7f7f7" }}>
+        <NaverMapComponent longitude={longitude} latitude={latitude} />
+      </div>
+    </NavermapsProvider>
   );
 }
 
